@@ -1,11 +1,13 @@
 <?php
 
-class PostComentario {
+class Comment {
     private $conn;
 	private $table='hsemh.comentario';
 	
 	//Propriedades POST
 	public $id;
+	public $idhist;
+	public $idusuario;
 	public $comment;
 	
 	public function __construct($db){
@@ -15,9 +17,23 @@ class PostComentario {
 	//Obtendo POST do banco de dados
 	public function read(){
 		//Criando query
-		$query = 'SELECT idcoment, dsccorpocoment FROM ' . $this->table . ' ORDER BY idcoment';
+		$query = 'SELECT idcoment, dsccorpocoment, idusuario FROM ' . $this->table . ' ORDER BY idcoment';
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
+		//Executa query
+		$stmt->execute();
+		
+		return $stmt;
+		
+	}
+
+	public function read_from_story(){
+		//Criando query
+		$query = 'SELECT idcoment, dsccorpocoment, idusuario FROM ' . $this->table . ' WHERE idhist = ?';
+		//Preparando a execução da consulta
+		$stmt = $this->conn->prepare($query);
+		//Indicando o parâmetro na consulta
+		$stmt->bindParam(1,$this->idhist);
 		//Executa query
 		$stmt->execute();
 		
@@ -27,7 +43,7 @@ class PostComentario {
 	
 	public function read_single(){
 		//Criando query
-		$query = 'SELECT idcoment, dsccorpocoment FROM ' . $this->table . ' WHERE idcoment = ? LIMIT 1';
+		$query = 'SELECT idcoment, dsccorpocoment, idusuario FROM ' . $this->table . ' WHERE idcoment = ? LIMIT 1';
 		
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
@@ -40,6 +56,7 @@ class PostComentario {
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		$this->id = $row['idcoment'];
+		$this->idusuario = $row['idusuario'];
 		$this->comment = $row['dsccorpocoment'];
 		
 		return $stmt;

@@ -4,6 +4,7 @@
 require_once("config.php");
 
 //Classes de post
-require_once("post.php");
-
+require_once("stories/story.php");
+require_once("users/user.php");
+require_once("comments/comment.php");
 ?>

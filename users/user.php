@@ -1,6 +1,6 @@
 <?php
 
-class PostUsuario {
+class User {
     private $conn;
 	private $table='hsemh.usuario';
 	
@@ -56,20 +56,22 @@ class PostUsuario {
 	}
 	
 	public function create(){
-		$query = 'INSERT INTO '. $this->table . ' SET nomusuario = :nomusuario';
+		$query = 'INSERT into ' . $this->table . ' (nomusuario, dscemailusuario, senhausuario, dscbiousuario, linkfotousuario)
+		values(:nomusuario, :dscemailusuario, :senhausuario, :dscbiousuario, :foto)';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
-		//clean data
-		$this->nome = htmlspecialchars(strip_tags($this->nome));
-		
+
 		//binding of parameters
 		$stmt->bindParam(':nomusuario', $this->nome);
-		
+		$stmt->bindParam(':dscemailusuario', $this->email);
+		$stmt->bindParam(':senhausuario', $this->senha);
+		$stmt->bindParam(':dscbiousuario', $this->bio);
+		$stmt->bindParam(':foto', $this->foto);
+
 		//execute the query
 		if($stmt->execute()){
 			return true;
-			
 		}
 		
 		//print erro if something goes wrong
