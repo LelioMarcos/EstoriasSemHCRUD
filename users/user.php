@@ -108,27 +108,25 @@ class User {
 	*/
 	
 	public function delete(){
-		$query = 'DELETE FROM '. $this->table . ' WHERE idusuario = :idusuario';
+		$query = 'DELETE FROM '. $this->table . ' WHERE idusuario = :id';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
 		//clean data
 		$this->id = htmlspecialchars(strip_tags($this->id));
-	
+		
 		//binding of parameters
-		$stmt->bindParam(':idusuario', $this->id);
-	
+		$stmt->bindParam(':id', $this->id);
+		
 		//execute the query
 		if($stmt->execute()){
 			return true;
 			
 		}
-		
 		//print erro if something goes wrong
 		printf("Error %s. \n", $stmt->error);
 		
 		return false;
 	}
 }
-
 ?>

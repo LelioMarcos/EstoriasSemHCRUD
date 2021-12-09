@@ -64,20 +64,22 @@ class Comment {
 	}
 	
 	public function create(){
-		$query = 'INSERT INTO '. $this->table . ' SET dsccorpocoment = :dsccorpocoment';
+		$query = 'INSERT into ' . $this->table . ' (idcoment, dsccorpocoment, idusuario, idhist)
+		values(:idcoment, :dsccorpocoment, :idusuario, :idhist)';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
-		//clean data
-		$this->comment = htmlspecialchars(strip_tags($this->comment));
 		
+		$this->comment = htmlspecialchars(strip_tags($this->comment));
+
 		//binding of parameters
 		$stmt->bindParam(':dsccorpocoment', $this->comment);
+		$stmt->bindParam(':idusuario', $this->idusuario);
+		$stmt->bindParam(':idhist', $this->idhist);
 		
 		//execute the query
 		if($stmt->execute()){
 			return true;
-			
 		}
 		
 		//print erro if something goes wrong
@@ -114,22 +116,21 @@ class Comment {
 	
 	
 	public function delete(){
-		$query = 'DELETE FROM '. $this->table . ' WHERE idcoment = :idcoment';
+		$query = 'DELETE FROM '. $this->table . ' WHERE idcoment = :id';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
 		//clean data
 		$this->id = htmlspecialchars(strip_tags($this->id));
-	
+		
 		//binding of parameters
-		$stmt->bindParam(':idcoment', $this->id);
-	
+		$stmt->bindParam(':id', $this->id);
+		
 		//execute the query
 		if($stmt->execute()){
 			return true;
 			
 		}
-		
 		//print erro if something goes wrong
 		printf("Error %s. \n", $stmt->error);
 		

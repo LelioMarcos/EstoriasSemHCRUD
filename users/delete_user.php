@@ -11,25 +11,18 @@ header('Access-Control-Allow-Methods: DELETE');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
 
 //incializa banco de dados e método requisição
-include_once('initialize.php'); 
+include_once('../initialize.php'); 
 
-//Instancia objeto Post com a conexão com o banco de dados
-$post = new PostUsuario($db);
+$post = new User($db);
 
-//get raw posted data
-$data = json_decode(file_get_contents("php://input"));
-
-$post->id = $data->id;
-
+$post->id = isset($_POST['id']) ? $_POST['id'] : die();
 
 //create post
 if($post->delete()){
-	
 	echo json_encode(
 		array('message' => 'Post delete.')
-	
 	);
-}else{
+} else {
 	echo json_encode(
 		array('message' => 'Post not delete.')
 	);
