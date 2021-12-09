@@ -31,11 +31,7 @@ if ($result->rowCount() > 0){
 	}
 	//Converte para JSON a saída
 	echo json_encode($post_arr);
-
-	$db->close();
 }else{
 	echo json_encode(array('message' => 'No posts found.'));
-
-	$db->close();
 }
 ?>
