@@ -64,8 +64,8 @@ class Comment {
 	}
 	
 	public function create(){
-		$query = 'INSERT into ' . $this->table . ' (idcoment, dsccorpocoment, idusuario, idhist)
-		values(:idcoment, :dsccorpocoment, :idusuario, :idhist)';
+		$query = 'INSERT into ' . $this->table . ' (dsccorpocoment, idusuario, idhist)
+		values(:dsccorpocoment, :idusuario, :idhist)';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);

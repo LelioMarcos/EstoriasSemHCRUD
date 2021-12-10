@@ -25,11 +25,11 @@ $post->idcapa = isset($_POST['idcapa']) ? $_POST['idcapa'] : die();
 //Chamada ao método create
 if($post->create()){
 	echo json_encode(
-		array('message' => 'Post created.')
+		array('message' => 'Story created.')
 	);
 }else{
 	echo json_encode(
-		array('message' => 'Post not created.')
+		array('message' => 'Story not created.')
 	);
 }
 ?>

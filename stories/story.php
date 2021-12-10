@@ -10,7 +10,7 @@ class Story {
 	public $sinopse;
 	public $corpo;
 	public $idusuario;
-	public $idcapa;
+	public $capa;
 	
 	public function __construct($db){
 		$this->conn = $db;
@@ -19,9 +19,27 @@ class Story {
 	//Obtendo POST do banco de dados
 	public function get(){
 		//Criando query
-		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist FROM ' . $this->table . ' ORDER BY idhist';
+		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist, idcapa FROM ' . $this->table . ' ORDER BY idhist';
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
+		//Executa query
+		$stmt->execute();
+		
+		return $stmt;
+		
+	}
+
+	//Obtendo POST do banco de dados
+	public function get_from_user(){
+		//Criando query
+		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist, idcapa FROM ' . $this->table . ' WHERE idusuario = ?';
+		
+		//Preparando a execução da consulta
+		$stmt = $this->conn->prepare($query);
+		
+		//Indicando o parâmetro na consulta
+		$stmt->bindParam(1,$this->idusuario);
+		
 		//Executa query
 		$stmt->execute();
 		
@@ -31,25 +49,32 @@ class Story {
 	
 	public function read_single(){
 		//Criando query
-		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist FROM ' . $this->table . ' WHERE idhist = ? LIMIT 1';
+		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist, idcapa FROM ' . $this->table . ' WHERE idhist = :id LIMIT 1';
 		
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
 		
 		//Indicando o parâmetro na consulta
-		$stmt->bindParam(1,$this->id);
+		$stmt->bindParam(":id", $this->id);
+
+		$stmt->execute();
+
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+		$this->id = $row['idhist'];
 		
 		//Executa query
-		$stmt->execute();
-		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		if ($this->id != null) {
+			$this->titulo = $row['nomhist'];
+			$this->sinopse = $row['dscsinopsehist'];
+			$this->corpo = $row['dsccorpohist'];
+			$this->capa = $row['idcapa'];
+
+			return true;
+		}
 		
-		$this->id = $row['idhist'];
-		$this->titulo = $row['nomhist'];
-		$this->sinopse = $row['dscsinopsehist'];
-		$this->corpo = $row['dsccorpohist'];
 		
-	
-		return $stmt;
+		return false;
 	}
 	
 	public function create(){
@@ -119,7 +144,6 @@ class Story {
 		//execute the query
 		if($stmt->execute()){
 			return true;
-			
 		}
 		//print erro if something goes wrong
 		printf("Error %s. \n", $stmt->error);

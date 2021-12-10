@@ -35,8 +35,10 @@ if ($num > 0){
 		array_push($comment_arr['data'],$comment_item);
 	}
 	//Converte para JSON a saída
+	header(http_response_code(200));
 	echo json_encode($comment_arr);
 } else {
+	header(http_response_code(404));
 	echo json_encode(array('message' => 'No comments found.'));
 }
 

@@ -23,11 +23,11 @@ $post->idhist = isset($_POST['idhist']) ? $_POST['idhist'] : die();
 //Chamada ao método create
 if($post->create()){
 	echo json_encode(
-		array('message' => 'Post created.')
+		array('message' => 'Comment created.')
 	);
 }else{
 	echo json_encode(
-		array('message' => 'Post not created.')
+		array('message' => 'Comment not created.')
 	);
 }
 ?>
