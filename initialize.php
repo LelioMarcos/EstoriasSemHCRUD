@@ -7,4 +7,5 @@ require_once("config.php");
 require_once("stories/story.php");
 require_once("users/user.php");
 require_once("comments/comment.php");
+require_once("genders/gender.php");
 ?>
