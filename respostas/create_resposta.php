@@ -21,10 +21,12 @@ $resposta->id_coment = isset($_POST['idcoment']) ? $_POST['idcoment'] : die();
 
 //Chamada ao método create
 if($resposta->create()){
+	header(http_response_code(201));
 	echo json_encode(
 		array('message' => 'Resposta created.')
 	);
 }else{
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'Resposta not created.')
 	);

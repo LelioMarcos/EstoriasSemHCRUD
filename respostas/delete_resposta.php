@@ -19,10 +19,12 @@ $resposta->id = isset($_POST['id']) ? $_POST['id'] : die();
 
 //create resposta
 if($resposta->delete()){
+	header(http_response_code(200));
 	echo json_encode(
 		array('message' => 'Resposta deleted.')
 	);
 } else {
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'Resposta not deleted.')
 	);

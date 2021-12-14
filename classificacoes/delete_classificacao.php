@@ -19,10 +19,12 @@ $classificacao->id = isset($_POST['id']) ? $_POST['id'] : die();
 
 //create classificacao
 if($classificacao->delete()){
+	header(http_response_code(200));
 	echo json_encode(
 		array('message' => 'Classificacao deleted.')
 	);
 } else {
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'Classificacao not deleted.')
 	);

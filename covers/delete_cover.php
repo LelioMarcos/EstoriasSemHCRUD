@@ -19,10 +19,12 @@ $cover->id = isset($_POST['id']) ? $_POST['id'] : die();
 
 //create cover
 if($cover->delete()){
+	header(http_response_code(200));
 	echo json_encode(
 		array('message' => 'Cover deleted.')
 	);
 } else {
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'Cover not deleted.')
 	);

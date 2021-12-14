@@ -24,10 +24,12 @@ $post->foto = isset($_POST['foto']) ? $_POST['foto'] : die();
 
 //Chamada ao método create
 if($post->create()){
+	header(http_response_code(201));
 	echo json_encode(
 		array('message' => 'User created.')
 	);
 }else{
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'User not created.')
 	);

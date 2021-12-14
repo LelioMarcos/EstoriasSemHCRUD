@@ -20,10 +20,12 @@ $cover->link = isset($_POST['link']) ? $_POST['link'] : die();
 
 //Chamada ao método create
 if($cover->create()){
+	header(http_response_code(201));
 	echo json_encode(
 		array('message' => 'Cover created.')
 	);
 }else{
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'Cover not created.')
 	);

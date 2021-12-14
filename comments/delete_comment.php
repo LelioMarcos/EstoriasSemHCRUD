@@ -19,10 +19,12 @@ $post->id = isset($_POST['id']) ? $_POST['id'] : die();
 
 //create post
 if($post->delete()){
+	header(http_response_code(200));
 	echo json_encode(
 		array('message' => 'Post delete.')
 	);
 } else {
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'Post not delete.')
 	);

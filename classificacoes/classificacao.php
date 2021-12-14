@@ -11,6 +11,18 @@ class Classificacao {
 	public function __construct($db){
 		$this->conn = $db;
 	}
+
+	public function get_all(){
+		//Criando query
+		$query = 'SELECT idclassificacao, dscclassificacao FROM ' . $this->table . ' ORDER BY idclassificacao';
+		//Preparando a execução da consulta
+		$stmt = $this->conn->prepare($query);
+		//Executa query
+		$stmt->execute();
+
+		return $stmt;
+		
+	}
 	
 	//Obtendo POST do banco de dados
 	public function get(){
@@ -33,9 +45,6 @@ class Classificacao {
 		}
 		
 		return false;
-
-		
-		return $stmt;
 		
 	}
 

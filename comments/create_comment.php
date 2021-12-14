@@ -22,10 +22,12 @@ $post->idhist = isset($_POST['idhist']) ? $_POST['idhist'] : die();
 
 //Chamada ao método create
 if($post->create()){
+	header(http_response_code(201));
 	echo json_encode(
 		array('message' => 'Comment created.')
 	);
 }else{
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'Comment not created.')
 	);

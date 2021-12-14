@@ -19,10 +19,12 @@ $gender->id = isset($_POST['id']) ? $_POST['id'] : die();
 
 //create gender
 if($gender->delete()){
+	header(http_response_code(200));
 	echo json_encode(
 		array('message' => 'Gender deleted.')
 	);
 } else {
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'Gender not deleted.')
 	);

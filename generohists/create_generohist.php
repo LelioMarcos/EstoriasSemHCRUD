@@ -21,10 +21,12 @@ $generohist->idgenero = isset($_POST['id_genero']) ? $_POST['id_genero'] : die()
 
 //Chamada ao método create
 if($generohist->create()){
+	header(http_response_code(201));
 	echo json_encode(
 		array('message' => 'GeneroHist created.')
 	);
 }else{
+	header(http_response_code(500));
 	echo json_encode(
 		array('message' => 'GeneroHist not created.')
 	);
