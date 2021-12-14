@@ -32,5 +32,47 @@ class Cover {
 		}
 		return false;
     }
+
+	public function create() {
+		$query = 'INSERT into ' . $this->table . ' (linkcapa)
+		values (:linkcapa)';
+		
+		//prepare statement
+		$stmt = $this->conn->prepare($query);
+		
+		//binding of parameters
+		$stmt->bindParam(':linkcapa', $this->link);
+		
+		//execute the query
+		if($stmt->execute()){
+			return true;
+		}
+		
+		//print erro if something goes wrong
+		printf("Error %s. \n", $stmt->error);
+		
+		return false;
+	}
+	
+	public function delete(){
+		$query = 'DELETE FROM '. $this->table . ' WHERE idcapa = :id';
+		
+		//prepare statement
+		$stmt = $this->conn->prepare($query);
+		//clean data
+		$this->id = htmlspecialchars(strip_tags($this->id));
+		
+		//binding of parameters
+		$stmt->bindParam(':id', $this->id);
+		
+		//execute the query
+		if($stmt->execute()){
+			return true;
+		}
+		//print erro if something goes wrong
+		printf("Error %s. \n", $stmt->error);
+		
+		return false;
+	}
 }
 ?>
