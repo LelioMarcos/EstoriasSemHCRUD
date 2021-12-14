@@ -29,8 +29,8 @@ if ($result->rowCount() > 0){
 
 		$generohist_item = array(
 			'idgenerohist' => $row['idgenerohist'],
-			'idgenero' => html_entity_decode($row['fk_genero_idgenero']),
-			'idhist' => html_entity_decode($row['fk_historia_idhist']),
+			'idgenero' => $row['fk_genero_idgenero'],
+			'idhist' => $row['fk_historia_idhist'],
 		);
 		
 		//Adiciona um ou mais elementos no final de um array
