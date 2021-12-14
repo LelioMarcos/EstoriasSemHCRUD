@@ -38,79 +38,48 @@ class Classificacao {
 		return $stmt;
 		
 	}
-	// public function create(){
-	// 	$query = 'INSERT into ' . $this->table . ' (dsccorpocoment, idusuario, idhist)
-	// 	values(:dsccorpocoment, :idusuario, :idhist)';
-		
-	// 	//prepare statement
-	// 	$stmt = $this->conn->prepare($query);
-		
-	// 	$this->comment = htmlspecialchars(strip_tags($this->comment));
 
-	// 	//binding of parameters
-	// 	$stmt->bindParam(':dsccorpocoment', $this->comment);
-	// 	$stmt->bindParam(':idusuario', $this->idusuario);
-	// 	$stmt->bindParam(':idhist', $this->idhist);
+	public function create() {
+		$query = 'INSERT into ' . $this->table . ' (dscclassificacao)
+		values (:dscclassificacao)';
 		
-	// 	//execute the query
-	// 	if($stmt->execute()){
-	// 		return true;
-	// 	}
+		//prepare statement
+		$stmt = $this->conn->prepare($query);
 		
-	// 	//print erro if something goes wrong
-	// 	printf("Error %s. \n", $stmt->error);
+		//binding of parameters
+		$stmt->bindParam(':dscclassificacao', $this->dsc);
 		
-	// 	return false;
-	// }
-	
-    
-	// public function update(){
-	// 	$query = 'UPDATE '. $this->table . ' SET dsccorpocoment = :dsccorpocoment WHERE id = :id';
-	
-	// 	//prepare statement
-	// 	$stmt = $this->conn->prepare($query);
-	// 	//clean data
-	// 	$this->comment = htmlspecialchars(strip_tags($this->comment));
-	// 	$this->id = htmlspecialchars(strip_tags($this->id));
-	
-	// 	//binding of parameters
-	// 	$stmt->bindParam(':dsccorpocoment', $this->comment);
-	// 	$stmt->bindParam(':idcoment', $this->id);
-	
-	// 	//execute the query
-	// 	if($stmt->execute()){
-	// 		return true;
+		//execute the query
+		if($stmt->execute()){
+			return true;
+		}
 		
-	// 	}
-	
-	// 	//print erro if something goes wrong
-	// 	printf("Error %s. \n", $stmt->error);
-	
-	// 	return false;
-	// }
-	
-	
-	// public function delete(){
-	// 	$query = 'DELETE FROM '. $this->table . ' WHERE idcoment = :id';
+		//print erro if something goes wrong
+		printf("Error %s. \n", $stmt->error);
 		
-	// 	//prepare statement
-	// 	$stmt = $this->conn->prepare($query);
-	// 	//clean data
-	// 	$this->id = htmlspecialchars(strip_tags($this->id));
+		return false;
+	}
+	
+	public function delete(){
+		$query = 'DELETE FROM '. $this->table . ' WHERE idclassificacao = :id';
 		
-	// 	//binding of parameters
-	// 	$stmt->bindParam(':id', $this->id);
+		//prepare statement
+		$stmt = $this->conn->prepare($query);
+		//clean data
+		$this->id = htmlspecialchars(strip_tags($this->id));
 		
-	// 	//execute the query
-	// 	if($stmt->execute()){
-	// 		return true;
-			
-	// 	}
-	// 	//print erro if something goes wrong
-	// 	printf("Error %s. \n", $stmt->error);
+		//binding of parameters
+		$stmt->bindParam(':id', $this->id);
 		
-	// 	return false;
-	// }
+		//execute the query
+		if($stmt->execute()){
+			return true;
+		}
+		//print erro if something goes wrong
+		printf("Error %s. \n", $stmt->error);
+		
+		return false;
+	}
 }
 
 ?>
