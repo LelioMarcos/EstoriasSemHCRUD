@@ -29,7 +29,7 @@ class User {
 		
 	}
 	
-	public function read_single(){
+	public function get(){
 		//Criando query
 		$query = 'SELECT idusuario, nomusuario, dscemailusuario, senhausuario, dscbiousuario, linkfotousuario FROM ' . $this->table . ' WHERE idusuario = ? LIMIT 1';
 		
@@ -44,14 +44,19 @@ class User {
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		$this->id = $row['idusuario'];
-		$this->nome = $row['nomusuario'];
-		$this->email = $row['dscemailusuario'];
-		$this->senha = $row['senhausuario'];
-        $this->bio = $row['dscbiousuario'];
-        $this->foto = $row['linkfotousuario'];
+
+		if ($this->id != null) {
+			$this->nome = $row['nomusuario'];
+			$this->email = $row['dscemailusuario'];
+			$this->senha = $row['senhausuario'];
+			$this->bio = $row['dscbiousuario'];
+			$this->foto = $row['linkfotousuario'];
+
+			return true;
+		}
 		
 	
-		return $stmt;
+		return false;
 		
 	}
 	

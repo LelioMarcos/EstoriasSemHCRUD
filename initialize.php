@@ -8,5 +8,6 @@ require_once("stories/story.php");
 require_once("users/user.php");
 require_once("comments/comment.php");
 require_once("covers/cover.php");
-
+require_once("genders/gender.php");
+require_once("respostas/resposta.php");
 ?>

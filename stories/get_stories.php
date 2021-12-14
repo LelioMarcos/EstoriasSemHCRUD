@@ -17,7 +17,7 @@ if (isset($_GET['id_user'])) {
 	$stora->idusuario = $_GET['id_user'];
 	$result = $stora->get_from_user();
 } else {
-	$result = $stora->get();
+	$result = $stora->get_all();
 }
 
 if ($result->rowCount() > 0){
@@ -44,7 +44,6 @@ if ($result->rowCount() > 0){
 	}
 	//Converte para JSON a saída
 	echo json_encode($post_arr);
-	header(http_response_code(200));
 }else{
 	header(http_response_code(404));
 	echo json_encode(array('message' => 'No posts found.'));

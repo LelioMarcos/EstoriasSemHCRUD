@@ -10,39 +10,35 @@ header('Content-Type: application/json');
 include_once('../initialize.php'); 
 
 //Instancia objeto Post com a conexão com o banco de dados
-$user = new User($db);
+$resposta = new Resposta($db);
 
 //Chamada ao método read da classe POST
-$result = $user->read();
+$result = $resposta->get_all();
 
 //Obtém a quantidade de linhas
 $num = $result->rowCount();
 
 if ($num > 0){
-	$user_arr = array();
-	$user_arr['data'] = array();
+	$resposta_arr = array();
+	$resposta_arr['data'] = array();
 
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
 		//extrai dados do array
 		extract($row);
-		$user_item = array(
-			'idusuario' => $row['idusuario'],
-			'nomusuario' => html_entity_decode($row['nomusuario']),
-			'dscemailusuario' => html_entity_decode($row['dscemailusuario']),
-			'senhausuario' => html_entity_decode($row['senhausuario']),
-			'dscbiousuario' => html_entity_decode($row['dscbiousuario']),
-			'linkfotousuario' => html_entity_decode($row['linkfotousuario'])			
+		$resposta_item = array(
+			'idresposta' => $row['idresposta'],
+			'idComentResp' => html_entity_decode($row['idComentResp']),
+            'idComent' => html_entity_decode($row['idcoment']),
 		);
 		
 		//Adiciona um ou mais elementos no final de um array
-		array_push($user_arr['data'],$user_item);
+		array_push($resposta_arr['data'],$resposta_item);
 	}
 	//Converte para JSON a saída
-	echo json_encode($user_arr);
+	echo json_encode($resposta_arr);
 	
 }else{
-	header(http_response_code(404));
-	echo json_encode(array('message' => 'No posts found.'));
+    header(http_response_code(404));
+	echo json_encode(array('message' => 'No respostas found.'));
 }
-
 ?>

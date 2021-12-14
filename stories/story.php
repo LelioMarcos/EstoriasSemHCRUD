@@ -17,7 +17,7 @@ class Story {
 	}
 	
 	//Obtendo POST do banco de dados
-	public function get(){
+	public function get_all(){
 		//Criando query
 		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist, idcapa FROM ' . $this->table . ' ORDER BY idhist';
 		//Preparando a execução da consulta
@@ -47,7 +47,7 @@ class Story {
 		
 	}
 	
-	public function read_single(){
+	public function get(){
 		//Criando query
 		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist, idcapa FROM ' . $this->table . ' WHERE idhist = :id LIMIT 1';
 		
@@ -103,32 +103,6 @@ class Story {
 		
 		return false;
 	}
-	
-	// public function update(){
-	// 	$query = 'UPDATE '. $this->table . ' SET titulo = :titulo WHERE id = :id';
-		
-	// 	//prepare statement
-	// 	$stmt = $this->conn->prepare($query);
-	// 	//clean data
-	// 	$this->titulo = htmlspecialchars(strip_tags($this->titulo));
-	// 	$this->id = htmlspecialchars(strip_tags($this->id));
-		
-	// 	//binding of parameters
-	// 	$stmt->bindParam(':titulo', $this->titulo);
-	// 	$stmt->bindParam(':id', $this->id);
-		
-	// 	//execute the query
-	// 	if($stmt->execute()){
-	// 		return true;
-			
-	// 	}
-		
-	// 	//print erro if something goes wrong
-	// 	printf("Error %s. \n", $stmt->error);
-		
-	// 	return false;
-	// }
-	
 	
 	public function delete(){
 		$query = 'DELETE FROM '. $this->table . ' WHERE idhist = :id';

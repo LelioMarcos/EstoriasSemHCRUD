@@ -12,7 +12,7 @@ class Cover {
 	}
 
     public function get() {
-        $query = 'SELECT linkCapa FROM ' . $this->table . ' WHERE idcapa = ? LIMIT 1';
+        $query = 'SELECT idcapa, linkCapa FROM ' . $this->table . ' WHERE idcapa = ? LIMIT 1';
 		
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
@@ -24,10 +24,13 @@ class Cover {
 		$stmt->execute();
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
-		$this->link = $row['linkcapa'];
-		
-		return $stmt;
-    }
+		$this->id = $row["idcapa"];
 
+		if ($this->id != null) {
+			$this->link = $row['linkcapa'];
+			return true;
+		}
+		return false;
+    }
 }
 ?>

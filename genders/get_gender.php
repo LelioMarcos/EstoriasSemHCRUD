@@ -11,24 +11,23 @@ header('Content-Type: application/json');
 include_once('../initialize.php'); 
 
 //Instanciando objeto
-$comment = new Comment($db);
+$gender = new Gender($db);
 
 //Verifica se existe o id passado por parâmetro
-$comment->id = isset($_GET['id']) ? $_GET['id'] : die();
+$gender->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-if ($comment->get()) {
-	$post_item = array(
-		'idcoment' => $comment->id,
-		'idusuario' => $comment->idusuario,
-		'dsccorpocoment' => html_entity_decode($comment->comment),			
-	);
 
-//imprime o JSON
-	print_r(json_encode($post_item));
+if ($gender->get()) {
+    //monta o array que será retornado.
+    $post_item = array(
+        'idgenero' => $gender->id,
+        'dscgenero' => html_entity_decode($gender->dsc),					
+    );
+
+    //imprime o JSON
+    print_r(json_encode($post_item));
 } else {
-	header(http_response_code(404));
-	print_r(json_encode(array (
-		"message" => "Comment not found"
-	)));
+    header(http_response_code(404));
+    echo json_encode(array('message' => 'Gender not found.'));
 }
 ?>

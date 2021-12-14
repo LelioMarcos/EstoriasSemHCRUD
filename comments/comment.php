@@ -41,7 +41,7 @@ class Comment {
 		
 	}
 	
-	public function read_single(){
+	public function get(){
 		//Criando query
 		$query = 'SELECT idcoment, dsccorpocoment, idusuario FROM ' . $this->table . ' WHERE idcoment = ? LIMIT 1';
 		
@@ -56,10 +56,15 @@ class Comment {
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
 		
 		$this->id = $row['idcoment'];
-		$this->idusuario = $row['idusuario'];
-		$this->comment = $row['dsccorpocoment'];
+
+		if ($this->id != null) {
+			$this->idusuario = $row['idusuario'];
+			$this->comment = $row['dsccorpocoment'];
+
+			return true;
+		}
 		
-		return $stmt;
+		return false;
 		
 	}
 	

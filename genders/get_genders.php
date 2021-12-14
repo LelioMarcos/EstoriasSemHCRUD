@@ -10,39 +10,34 @@ header('Content-Type: application/json');
 include_once('../initialize.php'); 
 
 //Instancia objeto Post com a conexão com o banco de dados
-$user = new User($db);
+$gender = new Gender($db);
 
 //Chamada ao método read da classe POST
-$result = $user->read();
+$result = $gender->get_all();
 
 //Obtém a quantidade de linhas
 $num = $result->rowCount();
 
 if ($num > 0){
-	$user_arr = array();
-	$user_arr['data'] = array();
+	$gender_arr = array();
+	$gender_arr['data'] = array();
 
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
 		//extrai dados do array
 		extract($row);
-		$user_item = array(
-			'idusuario' => $row['idusuario'],
-			'nomusuario' => html_entity_decode($row['nomusuario']),
-			'dscemailusuario' => html_entity_decode($row['dscemailusuario']),
-			'senhausuario' => html_entity_decode($row['senhausuario']),
-			'dscbiousuario' => html_entity_decode($row['dscbiousuario']),
-			'linkfotousuario' => html_entity_decode($row['linkfotousuario'])			
+		$gender_item = array(
+			'idgenero' => $row['idgenero'],
+			'dscgenero' => html_entity_decode($row['dscgenero']),		
 		);
 		
 		//Adiciona um ou mais elementos no final de um array
-		array_push($user_arr['data'],$user_item);
+		array_push($gender_arr['data'],$gender_item);
 	}
 	//Converte para JSON a saída
-	echo json_encode($user_arr);
+	echo json_encode($gender_arr);
 	
 }else{
 	header(http_response_code(404));
-	echo json_encode(array('message' => 'No posts found.'));
+	echo json_encode(array('message' => 'No genders found.'));
 }
-
 ?>
