@@ -1,5 +1,4 @@
 <?php
-//headers - comando que especifica características da resposta do cabeçalho HTTP.
 
 //Domínios autorizados a acessar os recursos do servidor
 header('Access-Control-Allow-Origin: *');

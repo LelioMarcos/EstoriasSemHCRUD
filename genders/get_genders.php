@@ -38,6 +38,6 @@ if ($num > 0){
 	
 }else{
 	header(http_response_code(404));
-	echo json_encode(array('message' => 'No genders found.'));
+	echo json_encode(array('message' => 'Gender not found.'));
 }
 ?>

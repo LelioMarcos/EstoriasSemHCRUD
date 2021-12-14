@@ -27,16 +27,12 @@ if ($result->rowCount() > 0){
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
 		extract($row);
 
-		$cover = new Cover($db);
-		$cover->id = $row["idcapa"];
-		$cover->get();
-
 		$post_item = array(
 			'idhist' => $row['idhist'],
 			'nomhist' => html_entity_decode($row['nomhist']),
 			'dscsinopsehist' => html_entity_decode($row['dscsinopsehist']),
 			'dsccorpohist' => html_entity_decode($row['dsccorpohist']),
-			'linkcapa' => $cover->link
+			'idcapa' => html_entity_decode($row['idcapa']),
 		);
 		
 		//Adiciona um ou mais elementos no final de um array

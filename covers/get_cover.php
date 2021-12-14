@@ -11,26 +11,23 @@ header('Content-Type: application/json');
 include_once('../initialize.php'); 
 
 //Instanciando objeto
-$stora = new Story($db);
+$cover = new Cover($db);
 
 //Verifica se existe o id passado por parâmetro
-$stora->id = isset($_GET['id']) ? $_GET['id'] : die();
+$cover->id = isset($_GET['id']) ? $_GET['id'] : die();
 
 
-if ($stora->get()) {
+if ($cover->get()) {
 	$post_item = array(
-		'idhist' => $stora->id,
-		'nomhist' => html_entity_decode($stora->titulo),
-		'dscsinopsehist' => html_entity_decode($stora->sinopse),
-		'dsccorpohist' => html_entity_decode($stora->corpo),
-		'idcapa' => $stora->capa			
+		'idcapa' => $cover->id,
+		'linkcapa' => html_entity_decode($cover->link),	
 	);
 	//imprime o JSON
 	print_r(json_encode($post_item));
 } else {
 	header(http_response_code(404));
 	print_r(json_encode(array (
-		"message" => "Story not found"
+		"message" => "Cover not found"
 	)));
 }
 ?>

@@ -11,4 +11,5 @@ require_once("covers/cover.php");
 require_once("genders/gender.php");
 require_once("respostas/resposta.php");
 require_once("classificacoes/classificacao.php");
+require_once("generohists/generohist.php");
 ?>
