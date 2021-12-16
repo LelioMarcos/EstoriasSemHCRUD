@@ -20,7 +20,8 @@ if ($comment->get()) {
 	$post_item = array(
 		'idcoment' => $comment->id,
 		'idusuario' => $comment->idusuario,
-		'dsccorpocoment' => html_entity_decode($comment->comment),			
+		'dsccorpocoment' => html_entity_decode($comment->comment),
+		'success' => 1		
 	);
 
 //imprime o JSON
@@ -28,7 +29,8 @@ if ($comment->get()) {
 } else {
 	header(http_response_code(404));
 	print_r(json_encode(array (
-		"message" => "Comment not found"
+		"message" => "Comment not found",
+		'success' => 0
 	)));
 }
 ?>

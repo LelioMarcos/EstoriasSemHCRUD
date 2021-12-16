@@ -27,11 +27,13 @@ if ($story->get()) {
 		'idcapa' => $story->capa			
 	);
 	//imprime o JSON
+	$story_item['success'] = 1;
 	print_r(json_encode($story_item));
 } else {
 	header(http_response_code(404));
 	print_r(json_encode(array (
-		"message" => "Story not found"
+		"message" => "Story not found",
+		"success" => 0
 	)));
 }
 ?>

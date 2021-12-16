@@ -29,9 +29,10 @@ if ($result->rowCount() > 0){
 		array_push($classificacao_arr['data'],$classificacao_item);
 	}
 	//Converte para JSON a saída
+	$classificacao_arr['success'] = 1;
 	echo json_encode($classificacao_arr);
 }else{
 	header(http_response_code(404));
-	echo json_encode(array('message' => 'No classificacaos found.'));
+	echo json_encode(array('message' => 'No classificacaos found.', 'success' => 0));
 }
 ?>

@@ -23,7 +23,8 @@ if($user->get()) {
         'dscemailusuario' => html_entity_decode($user->email),
         'senhausuario' => html_entity_decode($user->senha),
         'dscbiousuario' => html_entity_decode($user->bio),
-        'linkfotousuario' => html_entity_decode($user->foto)				
+        'linkfotousuario' => html_entity_decode($user->foto),
+        'success' => 1			
     );
 
     //imprime o JSON
@@ -31,7 +32,8 @@ if($user->get()) {
 } else {
     header(http_response_code(404));
 	print_r(json_encode(array (
-		"message" => "User not found"
+		"message" => "User not found",
+        "success" => 0
 	)));
 }
 ?>

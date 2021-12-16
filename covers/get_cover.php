@@ -20,14 +20,16 @@ $cover->id = isset($_GET['id']) ? $_GET['id'] : die();
 if ($cover->get()) {
 	$post_item = array(
 		'idcapa' => $cover->id,
-		'linkcapa' => html_entity_decode($cover->link),	
+		'linkcapa' => html_entity_decode($cover->link),
+		'success' => 1	
 	);
 	//imprime o JSON
 	print_r(json_encode($post_item));
 } else {
 	header(http_response_code(404));
 	print_r(json_encode(array (
-		"message" => "Cover not found"
+		"message" => "Cover not found",
+		'success' => 0
 	)));
 }
 ?>

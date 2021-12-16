@@ -19,13 +19,15 @@ if ($classificacao->get()) {
 	$post_item = array(
 		'idclassificacao' => $classificacao->id,
 		'dscclassificacao' =>  html_entity_decode($classificacao->dsc),
+		'success' => 1
 	);
 
 	print_r(json_encode($post_item));
 } else {
 	header(http_response_code(404));
 	print_r(json_encode(array (
-		"message" => "Classificacao not found"
+		"message" => "Classificacao not found",
+		'success' => 0
 	)));
 }
 ?>

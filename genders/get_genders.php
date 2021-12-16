@@ -33,11 +33,12 @@ if ($num > 0){
 		//Adiciona um ou mais elementos no final de um array
 		array_push($gender_arr['data'],$gender_item);
 	}
+	$gender_arr['success'] = 1;
 	//Converte para JSON a saída
 	echo json_encode($gender_arr);
 	
 }else{
 	header(http_response_code(404));
-	echo json_encode(array('message' => 'Gender not found.'));
+	echo json_encode(array('message' => 'Gender not found.', 'success' => 0));
 }
 ?>

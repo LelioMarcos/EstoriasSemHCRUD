@@ -47,6 +47,6 @@ if ($result->rowCount() > 0){
 	echo json_encode($story_arr);
 }else{
 	header(http_response_code(404));
-	echo json_encode(array('message' => 'No storys found.'));
+	echo json_encode(array('message' => 'No storys found.', "success" => 0));
 }
 ?>

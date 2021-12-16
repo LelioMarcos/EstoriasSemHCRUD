@@ -35,10 +35,11 @@ if ($num > 0){
 		array_push($resposta_arr['data'],$resposta_item);
 	}
 	//Converte para JSON a saída
+	$resposta_arr['success'] = 1;
 	echo json_encode($resposta_arr);
 	
 }else{
     header(http_response_code(404));
-	echo json_encode(array('message' => 'No respostas found.'));
+	echo json_encode(array('message' => 'No respostas found.', "success" => 0));
 }
 ?>

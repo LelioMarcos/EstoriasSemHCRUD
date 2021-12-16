@@ -21,13 +21,14 @@ if ($gender->get()) {
     //monta o array que será retornado.
     $post_item = array(
         'idgenero' => $gender->id,
-        'dscgenero' => html_entity_decode($gender->dsc),					
+        'dscgenero' => html_entity_decode($gender->dsc),
+        'success' => 1
     );
 
     //imprime o JSON
     print_r(json_encode($post_item));
 } else {
     header(http_response_code(404));
-    echo json_encode(array('message' => 'Gender not found.'));
+    echo json_encode(array('message' => 'Gender not found.', 'success' => 0));
 }
 ?>

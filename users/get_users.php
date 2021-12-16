@@ -38,11 +38,12 @@ if ($num > 0){
 		array_push($user_arr['data'],$user_item);
 	}
 	//Converte para JSON a saída
+	$user_arr['success'] = 1;
 	echo json_encode($user_arr);
 	
 }else{
 	header(http_response_code(404));
-	echo json_encode(array('message' => 'No posts found.'));
+	echo json_encode(array('message' => 'No posts found.', "success" => 0));
 }
 
 ?>

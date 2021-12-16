@@ -37,9 +37,10 @@ if ($result->rowCount() > 0){
 		array_push($generohist_arr['data'],$generohist_item);
 	}
 	//Converte para JSON a saída
+	$generohist_arr['success'] = 1;
 	echo json_encode($generohist_arr);
 }else{
 	header(http_response_code(404));
-	echo json_encode(array('message' => 'No generohist found.'));
+	echo json_encode(array('message' => 'No generohist found.', "success" => 0));
 }
 ?>
