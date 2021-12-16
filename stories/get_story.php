@@ -1,5 +1,5 @@
 <?php
-//headers - comando que especifica características da resposta do cabeçalho HTTP.
+//headers - comando que especifica características da resstorya do cabeçalho HTTP.
 
 //Domínios autorizados a acessar os recursos do servidor
 header('Access-Control-Allow-Origin: *');
@@ -11,22 +11,23 @@ header('Content-Type: application/json');
 include_once('../initialize.php'); 
 
 //Instanciando objeto
-$stora = new Story($db);
+$story = new Story($db);
 
 //Verifica se existe o id passado por parâmetro
-$stora->id = isset($_GET['id']) ? $_GET['id'] : die();
+$story->id = isset($_GET['id']) ? $_GET['id'] : die();
 
 
-if ($stora->get()) {
-	$post_item = array(
-		'idhist' => $stora->id,
-		'nomhist' => html_entity_decode($stora->titulo),
-		'dscsinopsehist' => html_entity_decode($stora->sinopse),
-		'dsccorpohist' => html_entity_decode($stora->corpo),
-		'idcapa' => $stora->capa			
+if ($story->get()) {
+	$story_item = array(
+		'idhist' => $story->id,
+		'nomhist' => html_entity_decode($story->titulo),
+		'dscsinopsehist' => html_entity_decode($story->sinopse),
+		'notahist' => $story->nota,
+		'dsccorpohist' => html_entity_decode($story->corpo),
+		'idcapa' => $story->capa			
 	);
 	//imprime o JSON
-	print_r(json_encode($post_item));
+	print_r(json_encode($story_item));
 } else {
 	header(http_response_code(404));
 	print_r(json_encode(array (

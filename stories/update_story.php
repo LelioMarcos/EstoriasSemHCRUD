@@ -5,7 +5,7 @@
 header('Access-Control-Allow-Origin: *');
 //Indica que o formato do corpo da solicitação é JSON
 header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: DELETE');
+header('Access-Control-Allow-Methods: PUT');
 
 //Especificando os headers permitindos na requisição
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods,Authorization,X-Requested-With');
@@ -13,20 +13,25 @@ header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,
 //incializa banco de dados e método requisição
 include_once('../initialize.php'); 
 
+//Instancia objeto story com a conexão com o banco de dados
 $story = new Story($db);
 
+
 $story->id = isset($_POST['id']) ? $_POST['id'] : die();
+$story->titulo = isset($_POST['titulo']) ? $_POST['titulo'] : die();
+$story->sinopse = isset($_POST['sinopse']) ? $_POST['sinopse'] : die();
+$story->corpo = isset($_POST['corpo']) ? $_POST['corpo'] : die();
+$story->nota = isset($_POST['nota']) ? $_POST['nota'] : die();
+$story->idcapa = isset($_POST['idcapa']) ? $_POST['idcapa'] : die();
 
 //create story
-if($story->delete()){
-	header(http_response_code(200));
-	echo json_encode(
-		array('message' => 'Post delete.')
+if($story->update()){
+	echo json_encode (
+		array('message' => 'Story updated.')
 	);
-} else {
-	header(http_response_code(500));
+}else{
 	echo json_encode(
-		array('message' => 'Post not delete.')
+		array('message' => 'Story not updated.')
 	);
 }
 ?>

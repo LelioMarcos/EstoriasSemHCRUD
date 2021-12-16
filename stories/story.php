@@ -10,6 +10,7 @@ class Story {
 	public $sinopse;
 	public $corpo;
 	public $idusuario;
+	public $nota;
 	public $capa;
 	
 	public function __construct($db){
@@ -19,7 +20,7 @@ class Story {
 	//Obtendo POST do banco de dados
 	public function get_all(){
 		//Criando query
-		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist, idcapa FROM ' . $this->table . ' ORDER BY idhist';
+		$query = 'SELECT idhist, nomhist, dscsinopsehist, notahist, dsccorpohist, idcapa FROM ' . $this->table . ' ORDER BY idhist';
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
 		//Executa query
@@ -32,7 +33,7 @@ class Story {
 	//Obtendo POST do banco de dados
 	public function get_from_user(){
 		//Criando query
-		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist, idcapa FROM ' . $this->table . ' WHERE idusuario = ?';
+		$query = 'SELECT idhist, nomhist, dscsinopsehist, notahist, dsccorpohist, idcapa FROM ' . $this->table . ' WHERE idusuario = ?';
 		
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
@@ -49,7 +50,7 @@ class Story {
 	
 	public function get(){
 		//Criando query
-		$query = 'SELECT idhist, nomhist, dscsinopsehist, dsccorpohist, idcapa FROM ' . $this->table . ' WHERE idhist = :id LIMIT 1';
+		$query = 'SELECT idhist, nomhist, dscsinopsehist, notahist, dsccorpohist, idcapa FROM ' . $this->table . ' WHERE idhist = :id LIMIT 1';
 		
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
@@ -68,6 +69,7 @@ class Story {
 			$this->titulo = $row['nomhist'];
 			$this->sinopse = $row['dscsinopsehist'];
 			$this->corpo = $row['dsccorpohist'];
+			$this->nota = $row['notahist'];
 			$this->capa = $row['idcapa'];
 
 			return true;
@@ -119,6 +121,36 @@ class Story {
 		if($stmt->execute()){
 			return true;
 		}
+		//print erro if something goes wrong
+		printf("Error %s. \n", $stmt->error);
+		
+		return false;
+	}
+
+	public function update(){
+		$query = 'UPDATE '. $this->table . ' 
+		SET nomhist = :nomhist,
+			dscsinopsehist = :dscsinopsehist,
+			dsccorpohist = :dsccorpohist,
+			notahist = :notahist,
+			idcapa = :idcapa
+		WHERE idhist = :id';
+		
+		//prepare statement
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id', $this->id);
+		$stmt->bindParam(':nomhist', $this->titulo);
+		$stmt->bindParam(':dscsinopsehist', $this->sinopse);
+		$stmt->bindParam(':dsccorpohist', $this->corpo);
+		$stmt->bindParam(':notahist', $this->nota);
+		$stmt->bindParam(':idcapa', $this->idcapa);
+		
+		//execute the query
+		if($stmt->execute()){
+			return true;
+		}
+		
 		//print erro if something goes wrong
 		printf("Error %s. \n", $stmt->error);
 		
