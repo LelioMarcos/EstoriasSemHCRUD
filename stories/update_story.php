@@ -16,7 +16,6 @@ include_once('../initialize.php');
 //Instancia objeto story com a conexão com o banco de dados
 $story = new Story($db);
 
-
 $story->id = isset($_POST['id']) ? $_POST['id'] : die();
 $story->titulo = isset($_POST['titulo']) ? $_POST['titulo'] : die();
 $story->sinopse = isset($_POST['sinopse']) ? $_POST['sinopse'] : die();

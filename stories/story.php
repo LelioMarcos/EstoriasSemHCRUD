@@ -47,6 +47,25 @@ class Story {
 		return $stmt;
 		
 	}
+
+	//Obtendo POST do banco de dados
+	public function search($search_query){
+		//Criando query
+		$query = 'SELECT * FROM ' . $this->table . ' WHERE nomhist LIKE ?';
+		
+		//Preparando a execução da consulta
+		$stmt = $this->conn->prepare($query);
+		
+		$search_query = "%{$search_query}%";
+		//Indicando o parâmetro na consulta
+		$stmt->bindParam(1,$search_query);
+		
+		//Executa query
+		$stmt->execute();
+		
+		return $stmt;
+		
+	}
 	
 	public function get(){
 		//Criando query

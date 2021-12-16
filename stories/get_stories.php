@@ -16,6 +16,8 @@ $result = array();
 if (isset($_GET['id_user'])) {
 	$story->idusuario = $_GET['id_user'];
 	$result = $story->get_from_user();
+} else if (isset($_GET['search'])) {
+	$result = $story->search($_GET['search']);
 } else {
 	$result = $story->get_all();
 }
