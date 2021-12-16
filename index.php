@@ -2,30 +2,19 @@
 <html lang="pt-br">
 	<head>
 		<meta charset="UTF-8">
-		<title>Consumindo dados webservice</title>
+		<title>Historia</title>
 	</head>
 	<body>
-		<?php
-			$url="https://swapi.dev/api/people/";
-			//json_decode - Função que analisa a string codificada JSON e converte-a em uma variável do PHP.
-			//file_get_contents -  Função que lê todo o conteúdo de um arquivo para uma String
-			$resultado = json_decode(file_get_contents($url));
-			
-			
-			//var_dump($resultado);
-			
-			
-			foreach ($resultado->results as $ator){
-				echo "Ator: " . $ator->name . "<br>";
-				echo "Ator: " . $ator->height . " cm <br>";
-				foreach ($ator->films as $filme){
-					echo "Filme: " . $filme;
-					
-				}
-				echo "<hr>";
-			}
-			
+		<h1>ESTÓRIAS SEM H!!</h1>
+		<h3>O CRUD mais bonito da rua</h3>
 
-		?>
+		<ul>
+			<li><a href="stories/get_stories.php">Get Stories</a></li>
+			<li><a href="users/get_users.php">Get Users</a></li>
+			<li><a href="respostas/get_respostas.php">Get Respsostas</a></li>
+			<li><a href="genders/get_genders.php">Get Genders</a></li>
+			<li><a href="classificacoes/get_classificacoes.php">Get Classificações</a></li>
+			<li><a href="generohists/get_generohists.php">Get GeneroHists</a></li>
+		</ul>
 	</body>
 </html>
