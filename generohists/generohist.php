@@ -81,6 +81,30 @@ class GeneroHist {
 		
 		return false;
 	}
+
+	public function update(){
+		$query = 'UPDATE '. $this->table . ' 
+		SET fk_historia_idhist = :fk_historia_idhist,
+			fk_genero_idgenero = :fk_genero_idgenero
+		WHERE idgenerohist = :id';
+		
+		//prepare statement
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id', $this->id);
+		$stmt->bindParam(':fk_historia_idhist', $this->idhist);
+		$stmt->bindParam(':fk_genero_idgenero', $this->idgenero);
+		
+		//execute the query
+		if($stmt->execute()){
+			return true;
+		}
+		
+		//print erro if something goes wrong
+		printf("Error %s. \n", $stmt->error);
+		
+		return false;
+	}
 }
 
 ?>

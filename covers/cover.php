@@ -74,5 +74,26 @@ class Cover {
 		
 		return false;
 	}
+
+	public function update(){
+		$query = 'UPDATE '. $this->table . ' 
+		SET linkcapa = :linkcapa
+		WHERE idcapa = :id';
+
+		$stmt = $this->conn->prepare($query);
+
+		$stmt->bindParam(':id', $this->id);
+		$stmt->bindParam(':linkcapa', $this->link);
+		
+		//execute the query
+		if($stmt->execute()){
+			return true;
+		}
+		
+		//print erro if something goes wrong
+		printf("Error %s. \n", $stmt->error);
+		
+		return false;
+	}
 }
 ?>
