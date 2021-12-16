@@ -64,7 +64,6 @@ class Story {
 		$stmt->execute();
 		
 		return $stmt;
-		
 	}
 	
 	public function get(){

@@ -41,6 +41,8 @@ if ($result->rowCount() > 0){
 		//Adiciona um ou mais elementos no final de um array
 		array_push($story_arr['data'],$story_item);
 	}
+
+	$story_arr['success'] = 1;
 	//Converte para JSON a saída
 	echo json_encode($story_arr);
 }else{
