@@ -98,13 +98,11 @@ class Story {
 	}
 	
 	public function create(){
-		$query = 'INSERT into ' . $this->table . ' (nomhist, dscsinopsehist, notahist, dsccorpohist, idusuario, idcapa)
-		values(:nomhist, :dscsinopsehist, "0", :dsccorpohist, :idusuario, :idcapa)';
+		$query = 'INSERT into hsemh.historia (nomhist, dscsinopsehist, notahist, dsccorpohist, idusuario, idcapa)
+		values(:nomhist, :dscsinopsehist, NULL, :dsccorpohist, :idusuario, NULL)';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
-		
-		$this->titulo = htmlspecialchars(strip_tags($this->titulo));
 		
 		//binding of parameters
 		$stmt->bindParam(':nomhist', $this->titulo);

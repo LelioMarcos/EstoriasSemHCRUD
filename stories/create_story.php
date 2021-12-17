@@ -14,7 +14,6 @@ $story->idcapa = isset($_POST['idcapa']) ? $_POST['idcapa'] : die();
 
 //Chamada ao método create
 if($story->create()) {
-	header(http_response_code(201));
 	echo json_encode(
 		array('message' => 'Story created.')
 	);
