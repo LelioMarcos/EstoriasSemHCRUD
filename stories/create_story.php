@@ -36,7 +36,7 @@ if (isset($_POST['titulo']) && isset($_POST['sinopse']) && isset($_POST['corpo']
 		);
 	}
 } else {
-	header(http_response_code(500));
+	header(http_response_code(501));
 	echo json_encode(
 		array('message' => 'Story not created.')
 	);
