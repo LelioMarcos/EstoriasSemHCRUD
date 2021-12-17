@@ -109,7 +109,6 @@ class Story {
 		$stmt->bindParam(':dscsinopsehist', $this->sinopse);
 		$stmt->bindParam(':dsccorpohist', $this->corpo);
 		$stmt->bindParam(':idusuario', $this->idusuario);
-		$stmt->bindParam(':idcapa', $this->idcapa);
 		
 		//execute the query
 		if($stmt->execute()){

@@ -6,11 +6,11 @@ include_once('../initialize.php');
 //Instancia objeto story com a conexão com o banco de dados
 $story = new Story($db);
 
-$story->titulo = isset($_POST['titulo']) ? $_POST['titulo'] : die();
-$story->sinopse = isset($_POST['sinopse']) ? $_POST['sinopse'] : die();
-$story->corpo = isset($_POST['corpo']) ? $_POST['corpo'] : die();
-$story->idusuario = isset($_POST['idusuario']) ? $_POST['idusuario'] : die();
-$story->idcapa = isset($_POST['idcapa']) ? $_POST['idcapa'] : die();
+$story->titulo = isset($_POST['titulo']) ? trim($_POST['titulo']) : die();
+$story->sinopse = isset($_POST['sinopse']) ? trim($_POST['sinopse']) : die();
+$story->corpo = isset($_POST['corpo']) ? trim($_POST['corpo']) : die();
+$story->idusuario = isset($_POST['idusuario']) ? trim($_POST['idusuario']) : die();
+$story->idcapa = isset($_POST['idcapa']) ? trim($_POST['idcapa']) : die();
 
 //Chamada ao método create
 if($story->create()) {
