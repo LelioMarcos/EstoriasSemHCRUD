@@ -12,6 +12,8 @@ $story->corpo = isset($_POST['corpo']) ? $_POST['corpo'] : die();
 $story->idusuario = isset($_POST['idusuario']) ? $_POST['idusuario'] : die();
 $story->idcapa = isset($_POST['idcapa']) ? $_POST['idcapa'] : die();
 
+echo $_POST['titulo'];
+/*
 //Chamada ao método create
 if($story->create()){
 	header(http_response_code(201));
@@ -24,4 +26,4 @@ if($story->create()){
 		array('message' => 'Story not created.')
 	);
 }
-?>
+?>*/
