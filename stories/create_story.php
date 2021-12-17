@@ -5,6 +5,7 @@
 header('Access-Control-Allow-Origin: *');
 //Indica que o formato do corpo da solicitação é JSON
 header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: POST');
 
 //incializa banco de dados e método story
 include_once('../initialize.php'); 
