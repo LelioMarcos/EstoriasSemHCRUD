@@ -99,8 +99,9 @@ class Story {
 	
 	public function create(){
 		$query = 'INSERT into hsemh.historia (nomhist, dscsinopsehist, notahist, dsccorpohist, idusuario, idcapa)
-		values(:nomhist, :dscsinopsehist, NULL, :dsccorpohist, :idusuario, NULL)';
+		values(:nomhist, :dscsinopsehist, NULL, :dsccorpohist, :idusuario, NULL) RETURNING idhist';
 		
+		$this->conn->beginTransaction();
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
 		
@@ -112,6 +113,8 @@ class Story {
 		
 		//execute the query
 		if($stmt->execute()){
+			$result = $stmt->fetch(PDO::FETCH_ASSOC);
+			$this->id = $result["idhist"];
 			return true;
 		}
 		
