@@ -29,6 +29,7 @@ if($post->create()){
 		array('message' => 'User created.')
 	);
 }else{
+	header("error");
 	echo json_encode(
 		array('message' => 'User not created.')
 	);
