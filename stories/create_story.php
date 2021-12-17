@@ -12,10 +12,8 @@ $story->corpo = isset($_POST['corpo']) ? $_POST['corpo'] : die();
 $story->idusuario = isset($_POST['idusuario']) ? $_POST['idusuario'] : die();
 $story->idcapa = isset($_POST['idcapa']) ? $_POST['idcapa'] : die();
 
-echo $_POST['titulo'];
-/*
 //Chamada ao método create
-if($story->create()){
+if($story->create()) {
 	header(http_response_code(201));
 	echo json_encode(
 		array('message' => 'Story created.')
@@ -26,4 +24,4 @@ if($story->create()){
 		array('message' => 'Story not created.')
 	);
 }
-?>*/
+?>

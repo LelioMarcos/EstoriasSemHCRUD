@@ -99,7 +99,7 @@ class Story {
 	
 	public function create(){
 		$query = 'INSERT into ' . $this->table . ' (nomhist, dscsinopsehist, notahist, dsccorpohist, idusuario, idcapa)
-		values(:nomhist, :dscsinopsehist, 0, :dsccorpohist, :idusuario, :idcapa)';
+		values(:nomhist, :dscsinopsehist, "0", :dsccorpohist, :idusuario, :idcapa)';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
