@@ -14,9 +14,7 @@ $post->senha = isset($_POST['senha']) ? $_POST['senha'] : die();
 $post->bio = isset($_POST['bio']) ? $_POST['bio'] : die();
 $post->foto = isset($_POST['foto']) ? $_POST['foto'] : die();
 
-echo $_POST['foto'];
 
-/*
 //Chamada ao método create
 if($post->create()){
 	header(http_response_code(201));
@@ -29,4 +27,4 @@ if($post->create()){
 		array('message' => 'User not created.')
 	);
 }
-?>*/
+?>

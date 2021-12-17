@@ -1,12 +1,5 @@
 <?php
 //headers - comando que especifica características da resstorya do cabeçalho HTTP.
-
-//Domínios autorizados a acessar os recursos do servidor
-header('Access-Control-Allow-Origin: *');
-//Indica que o formato do corpo da solicitação é JSON
-header('Content-Type: application/json');
-header('Access-Control-Allow-Methods: POST');
-
 //incializa banco de dados e método story
 include_once('../initialize.php'); 
 
