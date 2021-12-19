@@ -2,7 +2,9 @@
 //headers - comando que especifica características da resstorya do cabeçalho HTTP.
 //incializa banco de dados e método story
 include_once('../initialize.php'); 
-
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
 //Instancia objeto story com a conexão com o banco de dados
 $story = new Story($db);
 

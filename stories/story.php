@@ -99,9 +99,8 @@ class Story {
 	
 	public function create(){
 		$query = 'INSERT into hsemh.historia (nomhist, dscsinopsehist, notahist, dsccorpohist, idusuario, idcapa)
-		values(:nomhist, :dscsinopsehist, NULL, :dsccorpohist, :idusuario, NULL) RETURNING idhist';
+		values(:nomhist, :dscsinopsehist, 0.00, :dsccorpohist, :idusuario, 3) RETURNING idhist';
 		
-		$this->conn->beginTransaction();
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
 		
