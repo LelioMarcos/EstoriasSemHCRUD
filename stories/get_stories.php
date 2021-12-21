@@ -31,6 +31,10 @@ if ($result->rowCount() > 0){
 	while($row = $result->fetch(PDO::FETCH_ASSOC)){
 		extract($row);
 
+		$user = new User($db);
+		$user->id = $row['idusuario'];
+		$user->get();
+
 		$story_item = array(
 			'idhist' => $row['idhist'],
 			'nomhist' => html_entity_decode($row['nomhist']),
@@ -38,6 +42,7 @@ if ($result->rowCount() > 0){
 			'notahist' => $row['notahist'],
 			'dsccorpohist' => html_entity_decode($row['dsccorpohist']),
 			'idusuario' => $row['idusuario'],
+			'nomusuario' => $user->nome,
 			'idcapa' => $row['idcapa'],
 		);
 		

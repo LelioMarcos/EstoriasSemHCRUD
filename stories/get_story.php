@@ -18,6 +18,10 @@ $story->id = isset($_GET['id']) ? $_GET['id'] : die();
 
 
 if ($story->get()) {
+	$user = new User($db);
+	$user->id = $story->idusuario;
+	$user->get();
+
 	$story_item = array(
 		'idhist' => $story->id,
 		'nomhist' => html_entity_decode($story->titulo),
@@ -25,6 +29,7 @@ if ($story->get()) {
 		'notahist' => $story->nota,
 		'dsccorpohist' => html_entity_decode($story->corpo),
 		'idusuario' => $story->idusuario,
+		'nome' => $user->nome,
 		'idcapa' => $story->capa			
 	);
 	//imprime o JSON
