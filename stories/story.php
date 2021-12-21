@@ -10,6 +10,7 @@ class Story {
 	public $sinopse;
 	public $corpo;
 	public $idusuario;
+	public $classificacao;
 	public $nota;
 	public $capa;
 	
@@ -110,6 +111,7 @@ class Story {
 			$this->nota = $row['notahist'];
 			$this->idusuario = $row['idusuario'];
 			$this->capa = $row['idcapa'];
+			$this->classificacao = $row['idclassificacao'];
 
 			return true;
 		}
@@ -119,8 +121,8 @@ class Story {
 	}
 	
 	public function create(){
-		$query = 'INSERT into hsemh.historia (nomhist, dscsinopsehist, notahist, dsccorpohist, idusuario, idcapa)
-		values(:nomhist, :dscsinopsehist, 0.00, :dsccorpohist, :idusuario, 3) RETURNING idhist';
+		$query = 'INSERT into hsemh.historia (nomhist, dscsinopsehist, notahist, dsccorpohist, idusuario, idcapa, idclassificacao)
+		values(:nomhist, :dscsinopsehist, 0.00, :dsccorpohist, :idusuario, 3, 2) RETURNING idhist';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);

@@ -35,6 +35,11 @@ if ($result->rowCount() > 0){
 		$user->id = $row['idusuario'];
 		$user->get();
 
+		$classificacao = new Classificacao($db);
+		$classificacao->id = $row['idclassificacao'];
+		$classificacao->get();
+
+
 		$story_item = array(
 			'idhist' => $row['idhist'],
 			'nomhist' => html_entity_decode($row['nomhist']),
@@ -44,6 +49,7 @@ if ($result->rowCount() > 0){
 			'idusuario' => $row['idusuario'],
 			'nomusuario' => $user->nome,
 			'idcapa' => $row['idcapa'],
+			'classificacao' => $classificacao->dsc
 		);
 		
 		//Adiciona um ou mais elementos no final de um array

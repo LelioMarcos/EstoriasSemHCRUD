@@ -12,6 +12,7 @@ $story->titulo = isset($_POST['titulo']) ? trim($_POST['titulo']) : die();
 $story->sinopse = isset($_POST['sinopse']) ? trim($_POST['sinopse']) : die();
 $story->corpo = isset($_POST['corpo']) ? trim($_POST['corpo']) : die();
 $story->idusuario = isset($_POST['idusuario']) ? trim($_POST['idusuario']) : die();
+//$story->classificacao = isset($_POST['idclassificacao']) ? trim($_POST['idclassificacao']) : die();
 $story->idcapa = isset($_POST['idcapa']) ? trim($_POST['idcapa']) : die();
 
 //Chamada ao método create

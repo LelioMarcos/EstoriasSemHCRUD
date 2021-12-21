@@ -22,6 +22,10 @@ if ($story->get()) {
 	$user->id = $story->idusuario;
 	$user->get();
 
+	$classificacao = new Classificacao($db);
+	$classificacao->id = $story->classificacao;
+	$classificacao->get();
+
 	$story_item = array(
 		'idhist' => $story->id,
 		'nomhist' => html_entity_decode($story->titulo),
@@ -30,7 +34,8 @@ if ($story->get()) {
 		'dsccorpohist' => html_entity_decode($story->corpo),
 		'idusuario' => $story->idusuario,
 		'nome' => $user->nome,
-		'idcapa' => $story->capa			
+		'idcapa' => $story->capa,
+		'classificacao' => $classificacao->dsc			
 	);
 	//imprime o JSON
 	$story_item['success'] = 1;
