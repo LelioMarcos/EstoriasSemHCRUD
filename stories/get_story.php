@@ -24,6 +24,7 @@ if ($story->get()) {
 		'dscsinopsehist' => html_entity_decode($story->sinopse),
 		'notahist' => $story->nota,
 		'dsccorpohist' => html_entity_decode($story->corpo),
+		'idusuario' => $story->idusuario,
 		'idcapa' => $story->capa			
 	);
 	//imprime o JSON

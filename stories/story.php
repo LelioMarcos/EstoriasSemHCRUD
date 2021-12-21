@@ -20,7 +20,7 @@ class Story {
 	//Obtendo POST do banco de dados
 	public function get_all(){
 		//Criando query
-		$query = 'SELECT idhist, nomhist, dscsinopsehist, notahist, dsccorpohist, idcapa FROM ' . $this->table . ' ORDER BY idhist';
+		$query = 'SELECT * FROM ' . $this->table . ' ORDER BY idhist';
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
 		//Executa query
@@ -33,7 +33,7 @@ class Story {
 	//Obtendo POST do banco de dados
 	public function get_from_user(){
 		//Criando query
-		$query = 'SELECT idhist, nomhist, dscsinopsehist, notahist, dsccorpohist, idcapa FROM ' . $this->table . ' WHERE idusuario = ?';
+		$query = 'SELECT * FROM ' . $this->table . ' WHERE idusuario = ?';
 		
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
@@ -68,7 +68,7 @@ class Story {
 	
 	public function get(){
 		//Criando query
-		$query = 'SELECT idhist, nomhist, dscsinopsehist, notahist, dsccorpohist, idcapa FROM ' . $this->table . ' WHERE idhist = :id LIMIT 1';
+		$query = 'SELECT * FROM ' . $this->table . ' WHERE idhist = :id LIMIT 1';
 		
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
@@ -88,6 +88,7 @@ class Story {
 			$this->sinopse = $row['dscsinopsehist'];
 			$this->corpo = $row['dsccorpohist'];
 			$this->nota = $row['notahist'];
+			$this->idusuario = $row['idusuario'];
 			$this->capa = $row['idcapa'];
 
 			return true;

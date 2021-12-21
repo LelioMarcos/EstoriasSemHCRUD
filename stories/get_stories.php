@@ -35,6 +35,7 @@ if ($result->rowCount() > 0){
 			'dscsinopsehist' => html_entity_decode($row['dscsinopsehist']),
 			'notahist' => $row['notahist'],
 			'dsccorpohist' => html_entity_decode($row['dsccorpohist']),
+			'idusuario' => $row['idusuario'],
 			'idcapa' => $row['idcapa'],
 		);
 		
