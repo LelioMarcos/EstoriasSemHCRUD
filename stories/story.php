@@ -48,6 +48,26 @@ class Story {
 		
 	}
 
+	public function get_from_gender($genero){
+		//Criando query
+		$query = 'SELECT h.* from ' . $this->table . ' h 
+		join hsemh.generohist gh on (gh.fk_historia_idhist = h.idhist) 
+		join hsemh.genero g on (gh.fk_genero_idgenero = g.idgenero) 
+		where g.dscgenero like ?;';
+		
+		//Preparando a execução da consulta
+		$stmt = $this->conn->prepare($query);
+		
+		//Indicando o parâmetro na consulta
+		$stmt->bindParam(1, $genero);
+		
+		//Executa query
+		$stmt->execute();
+		
+		return $stmt;
+		
+	}
+
 	//Obtendo POST do banco de dados
 	public function search($search_query){
 		//Criando query
