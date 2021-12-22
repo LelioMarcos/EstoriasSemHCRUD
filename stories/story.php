@@ -11,6 +11,7 @@ class Story {
 	public $corpo;
 	public $idusuario;
 	public $classificacao;
+	public $genero;
 	public $nota;
 	public $capa;
 	
@@ -122,7 +123,7 @@ class Story {
 	
 	public function create(){
 		$query = 'INSERT into hsemh.historia (nomhist, dscsinopsehist, notahist, dsccorpohist, idusuario, idcapa, idclassificacao)
-		values(:nomhist, :dscsinopsehist, 0.00, :dsccorpohist, :idusuario, 3, 2) RETURNING idhist';
+		values(:nomhist, :dscsinopsehist, 0.00, :dsccorpohist, :idusuario, 3, (SELECT idClassificacao FROM hsemh.classificacao WHERE dscclassificacao LIKE :nomclassificacao)) RETURNING idhist';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
@@ -132,6 +133,7 @@ class Story {
 		$stmt->bindParam(':dscsinopsehist', $this->sinopse);
 		$stmt->bindParam(':dsccorpohist', $this->corpo);
 		$stmt->bindParam(':idusuario', $this->idusuario);
+		$stmt->bindParam(':nomclassificacao', $this->classificacao);
 		
 		//execute the query
 		if($stmt->execute()){
