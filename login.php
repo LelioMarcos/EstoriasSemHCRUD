@@ -2,6 +2,12 @@
 
 include_once 'initialize.php';
 
+//Domínios autorizados a acessar os recursos do servidor
+header('Access-Control-Allow-Origin: *');
+
+//Indica que o formato do corpo da solicitação é JSON
+header('Content-Type: application/json');
+
 // array for JSON response
 $response = array();
 

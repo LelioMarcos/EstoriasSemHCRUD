@@ -8,6 +8,12 @@
 // connecting to db
 include_once 'initialize.php';
 
+//Domínios autorizados a acessar os recursos do servidor
+header('Access-Control-Allow-Origin: *');
+
+//Indica que o formato do corpo da solicitação é JSON
+header('Content-Type: application/json');
+
 // array for JSON response
 $response = array();
  
@@ -24,17 +30,16 @@ if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['n
 	$stmt = $db->prepare($query);
 	
 	//binding of parameters
-	$stmt->bindParam(':username', $username);
-	$stmt->bindParam(':password', $password);
+	$stmt->bindParam(':username', $newLogin);
+	$stmt->bindParam(':password', $newPassword);
 
 	$stmt->execute();
 
 	$result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-	// check for empty result
 	if ($result) {
 		$response["success"] = 0;
-		$response["error"] = "usuario ja cadastrado";
+		$response["error"] = "usuario já cadastrado";
 	}
 	else {
 		//$result = pg_query($con, "INSERT INTO usuarios(login, password) VALUES('$newLogin', '$newPassword')");
