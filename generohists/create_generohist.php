@@ -17,11 +17,10 @@ include_once('../initialize.php');
 $generohist = new GeneroHist($db);
 
 $generohist->idhist = isset($_POST['id_story']) ? $_POST['id_story'] : die();
-$generohist->idgenero = isset($_POST['id_genero']) ? $_POST['id_genero'] : die();
+$generohist->nomgenero = isset($_POST['genero']) ? $_POST['genero'] : die();
 
 //Chamada ao método create
 if($generohist->create()){
-	header(http_response_code(201));
 	echo json_encode(
 		array('message' => 'GeneroHist created.')
 	);

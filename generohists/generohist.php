@@ -7,6 +7,7 @@ class GeneroHist {
 	//Propriedades POST
 	public $id;
     public $idgenero;
+	public $nomgenero;
     public $idhist;
 	
 	public function __construct($db){
@@ -41,14 +42,14 @@ class GeneroHist {
 
 	public function create() {
 		$query = 'INSERT into ' . $this->table . ' (fk_historia_idhist, fk_genero_idgenero)
-		values (:fk_historia_idhist, :fk_genero_idgenero)';
+		values (:fk_historia_idhist, (SELECT idgenero FROM hsemh.genero WHERE dscgenero = :dscgenero))';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
 		
 		//binding of parameters
 		$stmt->bindParam(':fk_historia_idhist', $this->idhist);
-		$stmt->bindParam(':fk_genero_idgenero', $this->idgenero);
+		$stmt->bindParam(':dscgenero', $this->nomgenero);
 		
 		//execute the query
 		if($stmt->execute()){
