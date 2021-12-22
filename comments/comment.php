@@ -8,6 +8,7 @@ class Comment {
 	public $id;
 	public $idhist;
 	public $idusuario;
+	public $nomusuario;
 	public $comment;
 	
 	public function __construct($db){
@@ -29,7 +30,7 @@ class Comment {
 
 	public function read_from_story(){
 		//Criando query
-		$query = 'SELECT idcoment, dsccorpocoment, idusuario FROM ' . $this->table . ' WHERE idhist = ?';
+		$query = 'SELECT c.idcoment, c.dsccorpocoment, c.idusuario, u.nomUsuario FROM ' . $this->table . ' c JOIN hsemh.usuario u ON (c.idusuario=u.idusuario) WHERE idhist = ?';
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
 		//Indicando o parâmetro na consulta
@@ -43,7 +44,7 @@ class Comment {
 	
 	public function get(){
 		//Criando query
-		$query = 'SELECT idcoment, dsccorpocoment, idusuario FROM ' . $this->table . ' WHERE idcoment = ? LIMIT 1';
+		$query = 'SELECT c.idcoment, c.dsccorpocoment, c.idusuario, u.nomUsuario FROM ' . $this->table . ' c JOIN hsemh.usuario u ON (c.idusuario=u.idusuario) WHERE idcoment = ? LIMIT 1';
 		
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
@@ -60,6 +61,7 @@ class Comment {
 		if ($this->id != null) {
 			$this->idusuario = $row['idusuario'];
 			$this->comment = $row['dsccorpocoment'];
+			$this->nomusuario = $row['nomusuario'];
 
 			return true;
 		}

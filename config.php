@@ -2,7 +2,7 @@
 
 $db_user=getenv('DB_USER');
 $db_password=getenv('DB_PASSWORD');
-$db_name=getenv('DB_NAME');
+$db_name=getenv('DB_USER');
 
 /*para conectar ao POSTGRESQL "pgsql:host=$host;port=5432*/
 

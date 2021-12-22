@@ -21,6 +21,7 @@ if ($comment->get()) {
 		'idcoment' => $comment->id,
 		'idusuario' => $comment->idusuario,
 		'dsccorpocoment' => html_entity_decode($comment->comment),
+		'nomusuario' => $comment->nomusuario,
 		'success' => 1		
 	);
 

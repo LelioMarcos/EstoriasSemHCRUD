@@ -28,6 +28,7 @@ if ($num > 0){
 		$comment_item = array(
 			'idcoment' => $row['idcoment'],
 			'idusuario' => $row['idusuario'],
+			'nomusuario' => $row['nomusuario'],
 			'dsccorpocoment' => html_entity_decode($row['dsccorpocoment']),			
 		);
 		
