@@ -1,8 +1,8 @@
 <?php
 
-$db_user="jpwuxgmh";
-$db_password="5tZONV_u0E1VDVyA1cy4qQJA5pGSjc6U";
-$db_name="jpwuxgmh";
+$db_user=getenv('DB_USER');
+$db_password=getenv('DB_PASSWORD');
+$db_name=getenv('DB_NAME');
 
 /*para conectar ao POSTGRESQL "pgsql:host=$host;port=5432*/
 
