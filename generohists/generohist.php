@@ -42,14 +42,14 @@ class GeneroHist {
 
 	public function create() {
 		$query = 'INSERT into ' . $this->table . ' (fk_historia_idhist, fk_genero_idgenero)
-		values (:fk_historia_idhist, (SELECT idgenero FROM hsemh.genero WHERE dscgenero = :dscgenero))';
+		values (:fk_historia_idhist, :fk_genero_idgenero)';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
 		
 		//binding of parameters
 		$stmt->bindParam(':fk_historia_idhist', $this->idhist);
-		$stmt->bindParam(':dscgenero', $this->nomgenero);
+		$stmt->bindParam(':fk_genero_idgenero', $this->idgenero);
 		
 		//execute the query
 		if($stmt->execute()){
