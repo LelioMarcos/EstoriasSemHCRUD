@@ -30,7 +30,7 @@ class Comment {
 
 	public function read_from_story(){
 		//Criando query
-		$query = 'SELECT c.idcoment, c.dsccorpocoment, c.idusuario, u.nomUsuario FROM ' . $this->table . ' c JOIN hsemh.usuario u ON (c.idusuario=u.idusuario) WHERE idhist = ?';
+		$query = 'SELECT c.idcoment, c.dsccorpocoment, c.idusuario, u.nomUsuario, u.linkfotousuario FROM ' . $this->table . ' c JOIN hsemh.usuario u ON (c.idusuario=u.idusuario) WHERE idhist = ?';
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
 		//Indicando o parâmetro na consulta

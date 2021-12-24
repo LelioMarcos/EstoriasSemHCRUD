@@ -29,6 +29,7 @@ if ($num > 0){
 			'idcoment' => $row['idcoment'],
 			'idusuario' => $row['idusuario'],
 			'nomusuario' => $row['nomusuario'],
+			'linkfotousuario' => $row['linkfotousuario'],
 			'dsccorpocoment' => html_entity_decode($row['dsccorpocoment']),			
 		);
 		

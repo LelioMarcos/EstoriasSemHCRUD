@@ -23,6 +23,11 @@ if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['n
 	$newLogin = trim($_POST['newLogin']);
 	$newPassword = md5(trim($_POST['newPassword']));
 	$newName = trim($_POST['newName']);
+
+	$imageFileType = strtolower(pathinfo(basename($_FILES["newPhoto"]["name"]),PATHINFO_EXTENSION));
+	$image_base64 = base64_encode(file_get_contents($_FILES['newPhoto']['tmp_name']));
+
+	$img = 'data:image/'.$imageFileType.';base64,'.$image_base64;
 		
 	$query = 'SELECT idUsuario FROM hsemh.usuario WHERE dscEmailUsuario=:username AND senhaUsuario=:password';
 	
@@ -44,7 +49,7 @@ if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['n
 	else {
 		//$result = pg_query($con, "INSERT INTO usuarios(login, password) VALUES('$newLogin', '$newPassword')");
 		$query = 'INSERT into hsemh.usuario (nomusuario, dscemailusuario, senhausuario, dscbiousuario, linkfotousuario)
-		values(:nomusuario, :dscemailusuario, :senhausuario, NULL, NULL)';
+		values(:nomusuario, :dscemailusuario, :senhausuario, NULL, :img)';
 		
 		//prepare statement
 		$stmt = $db->prepare($query);
@@ -53,6 +58,7 @@ if (isset($_POST['newLogin']) && isset($_POST['newPassword']) && isset($_POST['n
 		$stmt->bindParam(':nomusuario', $newName);
 		$stmt->bindParam(':dscemailusuario', $newLogin);
 		$stmt->bindParam(':senhausuario', $newPassword);
+		$stmt->bindParam(':img', $img);
 
 		if ($stmt->execute()) {
 			$response["success"] = 1;
