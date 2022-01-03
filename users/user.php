@@ -59,6 +59,63 @@ class User {
 		return false;
 		
 	}
+
+	public function get_no_photo(){
+		//Criando query
+		$query = 'SELECT idusuario, nomusuario, dscemailusuario, senhausuario, dscbiousuario FROM ' . $this->table . ' WHERE idusuario = ? LIMIT 1';
+		
+		//Preparando a execução da consulta
+		$stmt = $this->conn->prepare($query);
+		
+		//Indicando o parâmetro na consulta
+		$stmt->bindParam(1,$this->id);
+		
+		//Executa query
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		$this->id = $row['idusuario'];
+
+		if ($this->id != null) {
+			$this->nome = $row['nomusuario'];
+			$this->email = $row['dscemailusuario'];
+			$this->senha = $row['senhausuario'];
+			$this->bio = $row['dscbiousuario'];
+
+			return true;
+		}
+		
+	
+		return false;
+		
+	}
+
+	public function get_photo() {
+		//Criando query
+		$query = 'SELECT idusuario, linkfotousuario FROM ' . $this->table . ' WHERE idusuario = ? LIMIT 1';
+		
+		//Preparando a execução da consulta
+		$stmt = $this->conn->prepare($query);
+		
+		//Indicando o parâmetro na consulta
+		$stmt->bindParam(1,$this->id);
+		
+		//Executa query
+		$stmt->execute();
+		$row = $stmt->fetch(PDO::FETCH_ASSOC);
+		
+		$this->id = $row['idusuario'];
+
+		if ($this->id != null) {
+			$this->foto = $row['linkfotousuario'];
+
+			return true;
+		}
+		
+	
+		return false;
+		
+	}
 	
 	public function create(){
 		$query = 'INSERT into ' . $this->table . ' (nomusuario, dscemailusuario, senhausuario, dscbiousuario, linkfotousuario)
@@ -66,7 +123,7 @@ class User {
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
-
+		
 		//binding of parameters
 		$stmt->bindParam(':nomusuario', $this->nome);
 		$stmt->bindParam(':dscemailusuario', $this->email);
@@ -84,6 +141,7 @@ class User {
 		
 		return false;
 	}
+
 	
     /*
 	public function update(){
