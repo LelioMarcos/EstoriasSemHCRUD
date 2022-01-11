@@ -20,7 +20,7 @@ $gender->dsc = isset($_POST['nome']) ? $_POST['nome'] : die();
 
 //Chamada ao método create
 if($gender->create()){
-	header(http_response_code(201));
+	header(http_response_code(200));
 	echo json_encode(
 		array('message' => 'Gender created.')
 	);

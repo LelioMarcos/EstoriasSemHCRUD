@@ -70,6 +70,25 @@ class Story {
 		
 	}
 
+	public function get_from_classif($classificacao){
+		//Criando query
+		$query = 'SELECT h.* from ' . $this->table . ' h 
+		join hsemh.classificacao cl on (cl.idclassificacao = h.idclassificacao) 
+		where cl.dscclassificacao like ?;';
+		
+		//Preparando a execução da consulta
+		$stmt = $this->conn->prepare($query);
+		
+		//Indicando o parâmetro na consulta
+		$stmt->bindParam(1, $classificacao);
+		
+		//Executa query
+		$stmt->execute();
+		
+		return $stmt;
+		
+	}
+
 	//Obtendo POST do banco de dados
 	public function search($search_query){
 		//Criando query
