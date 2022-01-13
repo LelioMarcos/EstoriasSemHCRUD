@@ -43,7 +43,7 @@ class Comment {
 	
 	public function get(){
 		//Criando query
-		$query = 'SELECT c.idcoment, c.dsccorpocoment, c.idusuario, u.nomUsuario FROM ' . $this->table . ' c JOIN hsemh.usuario u ON (c.idusuario=u.idusuario) WHERE idcoment = ? LIMIT 1';
+		$query = 'SELECT c.idcoment, c.idhist, c.dsccorpocoment, c.idusuario, u.nomUsuario FROM ' . $this->table . ' c JOIN hsemh.usuario u ON (c.idusuario=u.idusuario) WHERE idcoment = ? LIMIT 1';
 		
 		//Preparando a execução da consulta
 		$stmt = $this->conn->prepare($query);
@@ -61,6 +61,7 @@ class Comment {
 			$this->idusuario = $row['idusuario'];
 			$this->comment = $row['dsccorpocoment'];
 			$this->nomusuario = $row['nomusuario'];
+			$this->idhist = $row['idhist'];
 
 			return true;
 		}
@@ -96,7 +97,7 @@ class Comment {
 	
     
 	public function update(){
-		$query = 'UPDATE '. $this->table . ' SET dsccorpocoment = :dsccorpocoment WHERE id = :id';
+		$query = 'UPDATE '. $this->table . ' SET dsccorpocoment = :dsccorpocoment WHERE idcoment = :id';
 	
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
@@ -106,7 +107,7 @@ class Comment {
 	
 		//binding of parameters
 		$stmt->bindParam(':dsccorpocoment', $this->comment);
-		$stmt->bindParam(':idcoment', $this->id);
+		$stmt->bindParam(':id', $this->id);
 	
 		//execute the query
 		if($stmt->execute()){

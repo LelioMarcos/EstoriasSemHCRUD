@@ -20,6 +20,7 @@ if ($comment->get()) {
 	$post_item = array(
 		'idcoment' => $comment->id,
 		'idusuario' => $comment->idusuario,
+		'idhist' => $comment->idhist,
 		'dsccorpocoment' => html_entity_decode($comment->comment),
 		'nomusuario' => $comment->nomusuario,
 		'success' => 1		
