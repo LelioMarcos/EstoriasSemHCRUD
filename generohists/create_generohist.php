@@ -17,7 +17,7 @@ include_once('../initialize.php');
 $generohist = new GeneroHist($db);
 
 $generohist->idhist = isset($_POST['id_story']) ? $_POST['id_story'] : die();
-$generohist->idgenero = isset($_POST['genero']) ? $_POST['genero'] : die();
+$generohist->nomgenero = isset($_POST['genero']) ? $_POST['genero'] : die();
 
 //Chamada ao método create
 if($generohist->create()){
