@@ -61,8 +61,7 @@ if ($result->rowCount() > 0){
 	$story_arr['success'] = 1;
 	//Converte para JSON a saída
 	echo json_encode($story_arr);
-}else{
-	header(http_response_code(404));
+} else {
 	echo json_encode(array('message' => 'No storys found.', "success" => 0));
 }
 ?>
