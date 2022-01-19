@@ -32,7 +32,7 @@ if ($result->rowCount() > 0){
 	$classificacao_arr['success'] = 1;
 	echo json_encode($classificacao_arr);
 }else{
-	header(http_response_code(404));
+	
 	echo json_encode(array('message' => 'No classificacaos found.', 'success' => 0));
 }
 ?>

@@ -40,7 +40,7 @@ if ($num > 0){
 	$comment_arr['success'] = 1;
 	echo json_encode($comment_arr);
 } else {
-	header(http_response_code(404));
+	
 	echo json_encode(array('message' => 'No comments found.', 'success' => 0));
 }
 

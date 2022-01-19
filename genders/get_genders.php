@@ -38,7 +38,7 @@ if ($num > 0){
 	echo json_encode($gender_arr);
 	
 }else{
-	header(http_response_code(404));
+	
 	echo json_encode(array('message' => 'Gender not found.', 'success' => 0));
 }
 ?>

@@ -29,7 +29,7 @@ if (isset($_GET['no_photo'])) {
         
         print_r(json_encode($post_item));
     } else {
-        header(http_response_code(404));
+        
         print_r(json_encode(array (
             "message" => "User not found",
             "success" => 0
@@ -49,7 +49,7 @@ if (isset($_GET['no_photo'])) {
 
         print_r(json_encode($post_item));
     } else {
-        header(http_response_code(404));
+        
         print_r(json_encode(array (
             "message" => "User not found",
             "success" => 0

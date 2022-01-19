@@ -24,7 +24,7 @@ if ($classificacao->get()) {
 
 	print_r(json_encode($post_item));
 } else {
-	header(http_response_code(404));
+	
 	print_r(json_encode(array (
 		"message" => "Classificacao not found",
 		'success' => 0

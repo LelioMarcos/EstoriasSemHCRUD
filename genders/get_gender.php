@@ -28,7 +28,7 @@ if ($gender->get()) {
     //imprime o JSON
     print_r(json_encode($post_item));
 } else {
-    header(http_response_code(404));
+    
     echo json_encode(array('message' => 'Gender not found.', 'success' => 0));
 }
 ?>

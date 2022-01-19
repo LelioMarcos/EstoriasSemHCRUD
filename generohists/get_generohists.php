@@ -40,7 +40,7 @@ if ($result->rowCount() > 0){
 	$generohist_arr['success'] = 1;
 	echo json_encode($generohist_arr);
 }else{
-	header(http_response_code(404));
+	
 	echo json_encode(array('message' => 'No generohist found.', "success" => 0));
 }
 ?>

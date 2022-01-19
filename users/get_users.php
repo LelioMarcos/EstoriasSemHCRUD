@@ -42,7 +42,7 @@ if ($num > 0){
 	echo json_encode($user_arr);
 	
 }else{
-	header(http_response_code(404));
+	
 	echo json_encode(array('message' => 'No posts found.', "success" => 0));
 }
 

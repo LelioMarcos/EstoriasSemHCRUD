@@ -16,7 +16,7 @@ $user->id = isset($_GET['id']) ? $_GET['id'] : die();
 if($user->get_photo()) {
     print_r($user->foto);
 } else {
-    header(http_response_code(404));
+    
 	print_r(json_encode(array (
 		"message" => "User not found",
         "success" => 0
