@@ -22,7 +22,9 @@ $generohist->nomgenero = isset($_POST['genero']) ? $_POST['genero'] : die();
 //Chamada ao método create
 if($generohist->create()){
 	echo json_encode(
-		array('message' => 'GeneroHist created.')
+		array('message' => 'GeneroHist created.',
+		'nomgenero' => $generohist->nomgenero
+		)
 	);
 }else{
 	header(http_response_code(500));
