@@ -42,7 +42,7 @@ class GeneroHist {
 
 	public function create() {
 		$query = 'INSERT into ' . $this->table . ' (fk_historia_idhist, fk_genero_idgenero)
-		values (:fk_historia_idhist, (SELECT idgenero FROM hsemh.genero WHERE dscgenero = :genero))';
+		values (:fk_historia_idhist, (SELECT idgenero FROM hsemh.genero WHERE dscgenero LIKE :genero))';
 		
 		//prepare statement
 		$stmt = $this->conn->prepare($query);
