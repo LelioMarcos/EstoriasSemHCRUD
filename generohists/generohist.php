@@ -61,6 +61,28 @@ class GeneroHist {
 		
 		return false;
 	}
+
+	public function create_id() {
+		$query = 'INSERT into ' . $this->table . ' (fk_historia_idhist, fk_genero_idgenero)
+		values (:fk_historia_idhist, :fk_genero_idgenero)';
+		
+		//prepare statement
+		$stmt = $this->conn->prepare($query);
+		
+		//binding of parameters
+		$stmt->bindParam(':fk_historia_idhist', $this->idhist);
+		$stmt->bindParam(':fk_genero_idgenero', $this->idgenero);
+		
+		//execute the query
+		if($stmt->execute()){
+			return true;
+		}
+		
+		//print erro if something goes wrong
+		printf("Error %s. \n", $stmt->error);
+		
+		return false;
+	}
 	
 	public function delete(){
 		$query = 'DELETE FROM '. $this->table . ' WHERE idgenerohist = :id';
